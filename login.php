@@ -65,14 +65,14 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 <body>
     <section class="vh-100">
         <div class="container-fluid p-0">
-            <div class="row" id="background">
+            <div class="row">
                 <div class="col-md-8 d-none d-sm-block" id="inpo">
-                    <div class="row-cols-1 vh-100 d-flex flex-column justify-content-center align-items-center">
+                    <div class="row-cols-1 vh-100 d-flex flex-column justify-content-center align-items-center" id="background">
                         <div class="col-md-6 text-center h-75" id="logo">
-                            <img src="img/logo.png" class="img-fluid" alt="Logo Hana Asri">
+                            <img src="public/assets/img/logo.png" class="img-fluid" alt="Logo Hana Asri">
                         </div>
                         <div class="col-md-6 text-center">
-                            <img src="img/inpo.png" class="img-fluid" alt="IG: wm.hanaasri WA: 0812-5219-9599">
+                            <img src="public/assets/img/ig&whatsapp.png" class="img-fluid" alt="IG: wm.hanaasri WA: 0812-5219-9599">
                         </div>
                     </div>
                 </div>

@@ -13,7 +13,7 @@
         width: 100vh;
     }
     #background{
-      background-image:url('img/Background.png');
+      background-image:url('public/assets/img/Background.png');
       background-size: cover;
       object-fit: cover;
       height: 100vh;
