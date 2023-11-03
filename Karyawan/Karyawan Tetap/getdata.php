@@ -10,8 +10,8 @@
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 </head>
-
 <body>
+    <section>
     <div class="sidebar">
 
     </div>
@@ -61,6 +61,7 @@
             }).draw();
         });
     </script>
+    </section>
 </body>
 
 </html>
