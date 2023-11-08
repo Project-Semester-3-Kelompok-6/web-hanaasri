@@ -1,21 +1,20 @@
-{php
-    $errors = [
-        404 => 'Not Found',
-        403 => 'Forbidden',
-        419 => 'Page Expired',
-    ]
-}
+<?php
+$errors = [
+    404 => 'Not Found',
+    403 => 'Forbidden',
+    419 => 'Page Expired',
+];
 
-{php
-    $message = $errors[$code] ?? 'Error'
-}
+$code = isset($_GET['code']) ? (int)$_GET['code'] : 404; // Mengambil kode dari parameter URL
+$message = $errors[$code] ?? 'Error';
+?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{$code} {$message}</title>
+    <title><?php echo $code; ?> <?php echo $message; ?></title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,8 +33,8 @@
     </style>
 </head>
 <body>
-    <h1>{$code}</h1>
+    <h1><?php echo $code; ?></h1>
     |
-    <h1>{$message}</h1>
+    <h1><?php echo $message; ?></h1>
 </body>
 </html>

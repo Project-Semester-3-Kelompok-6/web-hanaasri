@@ -3,7 +3,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-image: url('img/Background.png');
+    background-image: url('/resources/views/auth/img/Background.png');
     background-size: cover;
     object-fit: cover;
 }
