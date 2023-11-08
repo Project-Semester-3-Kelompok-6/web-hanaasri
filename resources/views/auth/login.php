@@ -44,7 +44,7 @@
                                 <input type="password" id="form2Example28" name="password" class="form-control form-control-lg" />
                             </div>
                             <div class="pt-1 mb-4">
-                                <button type="submit" class="btn btn-info btn-lg btn-block w-100">Login</button>
+                                <button type="submit" class="btn btn-dark btn-lg btn-block w-100">Login</button>
                             </div>
                             <p class="small mb-5 pb-lg-2"><a class="text-muted" href="forgotPassword.php">Forgot password?</a></p>
                         </form>
