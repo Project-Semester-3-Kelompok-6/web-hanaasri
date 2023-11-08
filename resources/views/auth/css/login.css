@@ -84,5 +84,7 @@ body::-webkit-scrollbar {
 
 .btn {
     background-color: #D76A05;
-    
+}
+.btn:hover{
+    background-color: #C35B0F;
 }
