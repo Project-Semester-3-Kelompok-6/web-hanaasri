@@ -11,4 +11,6 @@
         echo "Connection Failed";
     }
 
+    header('Content-Type: application/json');
+
 ?>

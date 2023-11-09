@@ -12,7 +12,7 @@
     #inpo {
         width: 100vh;
     }
-    #background{
+    #background {
       background-image:url('img/Background.png');
       background-size: cover;
       object-fit: cover;
