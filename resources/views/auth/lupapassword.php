@@ -15,7 +15,7 @@
 </head>
 <body>
     <div class="container-fluid vh-100 p-0 m-0">
-        <div class="d-flex align-items-center justify-content-center vh-100">
+        <div class="d-flex align-items-center justify-content-center vh-100" >
             <div class="card rounded-5 p-4">
                 <div class="text-center mt-2">
                     <h2>Lupa Password</h2>
