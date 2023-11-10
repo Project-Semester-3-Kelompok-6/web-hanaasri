@@ -16,18 +16,22 @@
 <body>
     <div class="container-fluid">
         <div class="row row-cols-2">
-            <div class="d-flex flex-column justify-content-between col-auto bg-light min-vh-100" id="sidebar">
+            <div class="d-flex flex-column justify-content-between col-auto bg-light min-vh-100 custom-sidebar" id="sidebar">
                 <div class="mt-4 w-100">
-                    <div class="d-flex justify-content-center">
-                        <img src="img/Logo.png" alt="Logo Hana Asri" height="50px">
-                    </div>
-                    <button class="navbar-toggler text-black" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle sidebar">
-                        <span class="" role="button" ><i class="fa fa-bars" aria-hidden="true" style="color:#000000"></i></span>
-                    </button>
+                    <div class="row row-cols-2" id="logotoggler">
+                        <div class="d-flex justify-content-center col-sm-9">
+                            <img src="img/Logo.png" alt="Logo Hana Asri" height="50px">
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center col-sm-3 ms-auto">
+                            <button class="navbar-toggler text-black border-1 rounded-5 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle sidebar" id="sidtog">
+                                <span role="button"><i class="fa fa-bars" aria-hidden="true" style="color: #000000;"></i></span>
+                            </button>
+                        </div>
+                    </div>                                                     
                     <hr class="text-black"/>
                     <ul class="nav nav-pills flex-column mt-2 mt-sm-0" id="menu">
                         <li class="nav-item">
-                            <a class="nav-link text-black" href="#" aria-current="page">
+                            <a class="nav-link text-black active" href="#" aria-current="page" id="Dashboard">
                                 <i class="fa-solid fa-house"></i>
                                 <span class="ms-2">Dashboard</span>
                             </a>
@@ -85,9 +89,23 @@
                         <i class="fa-solid fa-right-from-bracket"></i>
                         <span>Logout</span>
                     </button>
-
                 </div>
             </div>
+            <div class="container-fluid p-0 w-75">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="container-fluid">
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                    <span class="navbar-text">Nama User</span>
+                                </li>
+                                <li class="nav-item">
+                                    <span class="navbar-text">Jabatan</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
             <div>
                 Main Content
             </div>
