@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+/* Tampilan untuk layar mobile */
+@media only screen and (max-width: 575px) {    
+    #fbackground {
+        background-color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+    
+    #form {
+        padding: 20px;
+        border-radius: 20px;
+        width: 90%;
+        max-width: 400px; /* Batasi lebar form untuk tampilan mobile */
+    }
+}
+
+/* Tampilan untuk layar tablet */
+@media only screen and (min-width: 576px) and (max-width: 991px) {
+    #inpo {
+        position: relative;
+        max-width: none;
+        width: 100%;
+    }
+
+    #fbackground {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f9f9f9;
+        height: 100%;
+        width: 100%;
+        overflow: auto; /* Izinkan scrolling jika konten di dalamnya melebihi layar */
+    }
+    
+    #logo {
+        padding-top: 10px;
+    }
+
+    #form {
+        padding: 20px;
+        border-radius: 20px;
+        width: 100%;
+        max-width: 400px; /* Batasi lebar form untuk tampilan tablet */
+    }
+}
+
+body {
+    background-color: #f9f9f9;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;
+    margin: 0;
+}
+body::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+#inpo {
+    background-image: url('img/Background.png');
+    background-size: cover;
+    object-fit: cover;
+    height: 100vh;
+    background-position: left; 
+    padding: 0;
+}
+
+#background {
+    width: 100%;
+    background: linear-gradient(to bottom, transparent 0%, black 99%);
+    padding: 0;
+}
+
+#logo {
+    padding-top: 150px;
+}
+
+#form {
+    background-color: #f9f9f9;
+    height: 100%;
+}
+
+.btn {
+    background-color: #D76A05;
+}
+.btn:hover{
+    background-color: #C35B0F;
+}
