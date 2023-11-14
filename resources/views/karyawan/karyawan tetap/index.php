@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <!-- Font -->
     <link rel="preconnect" class="nav-link" href="https://fonts.googleapis.com">
     <link rel="preconnect" class="nav-link" href="https://fonts.gstatic.com" crossorigin>
@@ -15,12 +14,15 @@
 <link rel="stylesheet" class="nav-link" href="index.css">
 <!-- CSS Bootstrap -->
 <link class="nav-link" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- CSS DataTable -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+
 
 <!-- JS -->
 <script src="index.js"></script>
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
-<link rel="stylesheet" href="sidebar.css">
+<!-- JS Query -->
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<!-- JS DataTable -->
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
 <body>
@@ -105,7 +107,7 @@
             <!-- Main Content -->
             <div class="col-xl-9 col-rows-1">
                 <div class="container m-4">
-                    <div class="position-relative"> <!-- Tambahkan class position-relative -->
+                    <div class="position-relative">
                         <h1 class="text-black"> Karyawan Tetap</h1>
                         <button type="button" class="btn text-white" style="background-color: rgba(255, 145, 76, 1); position: absolute; top: 0; right: 0;">
                             <i class="fa-solid fa-plus"></i> Tambah Data
@@ -131,7 +133,7 @@
                             $(document).ready(function() {
                                 // Memanggil metode GET dari API
                                 $.ajax({
-                                    url: 'http://localhost/web-hanaasri/resources/API/api.php?action=get_users',
+                                    url: 'http://10.10.172.177/web-hanaasri/resources/API/api.php?action=get_users',
                                     method: 'GET',
                                     dataType: 'json',
                                     success: function(data) {

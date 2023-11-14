@@ -15,17 +15,17 @@ if (isset($_GET['action'])) {
             // Contoh: api.php?action=get_users
             if ($action == 'get_users') {
                 $query = "SELECT users.Nama AS NamaKaryawan, devisi.NamaDevisi AS NamaDevisi
-                FROM users
-                INNER JOIN devisi ON users.DevisiID = devisi.DevisiID
-                WHERE users.Status = 'Karyawan tetap'";
+                          FROM users
+                          INNER JOIN devisi ON users.DevisiID = devisi.DevisiID";
                 $result = $conn->query($query);
 
-                $users = array();
-                while ($row = $result->fetch_assoc()) {
-                    $users[] = $row;
+                if ($result) {
+                    $users = $result->fetch_all(MYSQLI_ASSOC);
+                    echo json_encode($users);
+                } else {
+                    http_response_code(500);
+                    echo json_encode(array("message" => "Error retrieving data"));
                 }
-
-                echo json_encode($users);
             }
             break;
 
@@ -37,38 +37,16 @@ if (isset($_GET['action'])) {
                 $email = $_POST['email'];
 
                 $query = "INSERT INTO users (name, email) VALUES ('$name', '$email')";
-                $conn->query($query);
-
-                echo json_encode(array("message" => "User added successfully"));
+                if ($conn->query($query)) {
+                    echo json_encode(array("message" => "User added successfully"));
+                } else {
+                    http_response_code(500);
+                    echo json_encode(array("message" => "Error adding user"));
+                }
             }
             break;
 
-        case 'PUT':
-            // Mengupdate data
-            // Contoh: api.php?action=update_user&id=1&name=John Doe
-            if ($action == 'update_user') {
-                $id = $_GET['id'];
-                $name = $_GET['name'];
-
-                $query = "UPDATE users SET name='$name' WHERE id=$id";
-                $conn->query($query);
-
-                echo json_encode(array("message" => "User updated successfully"));
-            }
-            break;
-
-        case 'DELETE':
-            // Menghapus data
-            // Contoh: api.php?action=delete_user&id=1
-            if ($action == 'delete_user') {
-                $id = $_GET['id'];
-
-                $query = "DELETE FROM users WHERE id=$id";
-                $conn->query($query);
-
-                echo json_encode(array("message" => "User deleted successfully"));
-            }
-            break;
+        // Tambahkan case untuk metode PUT, DELETE, jika diperlukan
 
         default:
             // Metode HTTP tidak didukung
