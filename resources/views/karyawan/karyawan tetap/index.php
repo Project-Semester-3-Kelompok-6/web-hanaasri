@@ -10,12 +10,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<!-- CSS -->
-<link rel="stylesheet" class="nav-link" href="index.css">
 <!-- CSS Bootstrap -->
 <link class="nav-link" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <!-- CSS DataTable -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<!-- CSS -->
+<link rel="stylesheet" class="nav-link" href="index.css">
 
 
 <!-- JS -->
@@ -133,7 +133,7 @@
                             $(document).ready(function() {
                                 // Memanggil metode GET dari API
                                 $.ajax({
-                                    url: 'http://10.10.172.177/web-hanaasri/resources/API/api.php?action=get_users',
+                                    url: 'http://localhost/web-hanaasri/resources/API/api.php?action=get_users',
                                     method: 'GET',
                                     dataType: 'json',
                                     success: function(data) {
@@ -146,11 +146,12 @@
                                                 '<td>' +
                                                 '<button class="btn btn-success me-1" onclick="editUser(' + data[i].UserID + ')">Detail</button>' +
                                                 '<button class="btn btn-primary me-1" onclick="editUser(' + data[i].UserID + ')">Edit</button>' +
-                                                '<button class="btn btn-danger " onclick="deleteUser(' + data[i].UserID + ')">Delete</button>' +
+                                                '<button class="btn btn-danger" onclick="deleteUser(' + data[i].UserID + ', \'' + data[i].NamaKaryawan + '\')">Delete</button>'
                                                 '</td>' +
                                                 '</tr>';
                                             $('#table-body').append(row);
                                         }
+
 
                                         // Inisialisasi DataTable setelah memasukkan data
                                         var table = $('#example').DataTable({
@@ -177,6 +178,27 @@
                                     }
                                 });
                             });
+
+                            function deleteUser(userId, userName) {
+    var confirmMessage = 'Apakah Anda yakin ingin menghapus data ' + userName + '?';
+
+    if (confirm(confirmMessage)) {
+        $.ajax({
+            url: 'http://localhost/web-hanaasri/resources/API/api.php?action=delete_user&id=' + userId,
+            method: 'DELETE',
+            dataType: 'json',
+            success: function(response) {
+                console.log(response.message);
+                // Refresh halaman atau muat ulang data jika diperlukan
+                location.reload();
+            },
+            error: function(error) {
+                console.error('Error:', error);
+            }
+        });
+    }
+}
+
                         </script>
                     </div>
                 </div>

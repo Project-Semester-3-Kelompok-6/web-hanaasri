@@ -46,8 +46,8 @@ if (isset($_GET['action'])) {
             }
             break;
 
-        // Tambahkan case untuk metode PUT, DELETE, jika diperlukan
-
+            // Tambahkan case untuk metode PUT, DELETE, jika diperlukan
+            
         default:
             // Metode HTTP tidak didukung
             http_response_code(405);

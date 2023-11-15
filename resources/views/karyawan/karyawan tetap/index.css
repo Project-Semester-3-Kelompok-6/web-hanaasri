@@ -18,10 +18,11 @@
     transition: width 0.3s ease;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
     color: var(--bs-nav-pills-link-active-color);
     background-color: #ff914c;
-  }
+}
 
 .nav-pills li a:hover {
     background-color: rgba(255, 145, 76, 0.5);
@@ -29,6 +30,7 @@
 
 #logout {
     background-color: rgba(255, 145, 76, 1);
+    color: #ffffff;
 }
 
 #logout:hover {
