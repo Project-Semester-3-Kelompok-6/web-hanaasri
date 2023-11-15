@@ -14,7 +14,7 @@ if (isset($_GET['action'])) {
             // Mengambil data
             // Contoh: api.php?action=get_users
             if ($action == 'get_users') {
-                $query = "SELECT users.Nama AS NamaKaryawan, devisi.NamaDevisi AS NamaDevisi
+                $query = "SELECT users.UserID, users.Nama AS NamaKaryawan, devisi.NamaDevisi AS NamaDevisi
                           FROM users
                           INNER JOIN devisi ON users.DevisiID = devisi.DevisiID";
                 $result = $conn->query($query);
@@ -45,8 +45,27 @@ if (isset($_GET['action'])) {
                 }
             }
             break;
-
-            // Tambahkan case untuk metode PUT, DELETE, jika diperlukan
+            
+            case 'DELETE':
+                // Menghapus data
+                // Contoh: api.php?action=delete_user&id=1
+                if ($action == 'delete_user') {
+                    if (isset($_GET['id'])) {
+                        $id = $_GET['id'];
+            
+                        $query = "DELETE FROM users WHERE UserID=$id";
+                        if ($conn->query($query)) {
+                            echo json_encode(array("message" => "User deleted successfully"));
+                        } else {
+                            http_response_code(500);
+                            echo json_encode(array("message" => "Error deleting user"));
+                        }
+                    } else {
+                        http_response_code(400);
+                        echo json_encode(array("message" => "'id' parameter is missing"));
+                    }
+                }
+                break;
             
         default:
             // Metode HTTP tidak didukung

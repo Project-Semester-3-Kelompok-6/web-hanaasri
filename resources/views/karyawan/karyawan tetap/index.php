@@ -147,8 +147,8 @@
                                                 '<button class="btn btn-success me-1" onclick="editUser(' + data[i].UserID + ')">Detail</button>' +
                                                 '<button class="btn btn-primary me-1" onclick="editUser(' + data[i].UserID + ')">Edit</button>' +
                                                 '<button class="btn btn-danger" onclick="deleteUser(' + data[i].UserID + ', \'' + data[i].NamaKaryawan + '\')">Delete</button>'
-                                                '</td>' +
-                                                '</tr>';
+                                            '</td>' +
+                                            '</tr>';
                                             $('#table-body').append(row);
                                         }
 
@@ -180,25 +180,24 @@
                             });
 
                             function deleteUser(userId, userName) {
-    var confirmMessage = 'Apakah Anda yakin ingin menghapus data ' + userName + '?';
+                                var confirmMessage = 'Apakah Anda yakin ingin menghapus data ' + userName + '?';
 
-    if (confirm(confirmMessage)) {
-        $.ajax({
-            url: 'http://localhost/web-hanaasri/resources/API/api.php?action=delete_user&id=' + userId,
-            method: 'DELETE',
-            dataType: 'json',
-            success: function(response) {
-                console.log(response.message);
-                // Refresh halaman atau muat ulang data jika diperlukan
-                location.reload();
-            },
-            error: function(error) {
-                console.error('Error:', error);
-            }
-        });
-    }
-}
-
+                                if (confirm(confirmMessage)) {
+                                    $.ajax({
+                                        url: 'http://localhost/web-hanaasri/resources/API/api.php?action=delete_user&id=' + userId,
+                                        method: 'DELETE',
+                                        dataType: 'json',
+                                        success: function(response) {
+                                            console.log(response.message);
+                                            // Refresh halaman atau muat ulang data jika diperlukan
+                                            location.reload();
+                                        },
+                                        error: function(error) {
+                                            console.error('Error:', error);
+                                        }
+                                    });
+                                }
+                            }
                         </script>
                     </div>
                 </div>
