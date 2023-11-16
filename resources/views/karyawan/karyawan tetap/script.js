@@ -1,7 +1,7 @@
 $(document).ready(function () {
   // Memanggil metode GET dari API
   $.ajax({
-    url: "http://localhost/web-hanaasri/resources/API/api.php?action=get_users",
+    url: "http://localhost/web-hanaasri/resources/API/api.php?action=get_users&status=Karyawan Tetap",
     method: "GET",
     dataType: "json",
     success: function (data) {
@@ -9,28 +9,15 @@ $(document).ready(function () {
       for (var i = 0; i < data.length; i++) {
         var row =
           "<tr>" +
-          "<td>" +
-          (i + 1) +
-          "</td>" +
-          "<td>" +
-          data[i].NamaKaryawan +
-          "</td>" +
-          "<td>" +
-          data[i].NamaDevisi +
-          "</td>" +
-          "<td>" +
-          '<button class="btn btn-success me-1" onclick="editUser(' +
-          data[i].UserID +
-          ')">Detail</button>' +
-          '<button class="btn btn-primary me-1" onclick="editUser(' +
-          data[i].UserID +
-          ')">Edit</button>' +
-          '<button class="btn btn-danger" onclick="deleteUser(' +
-          data[i].UserID +
-          ", '" +
-          data[i].NamaKaryawan +
-          "')\">Delete</button>";
-        "</td>" + "</tr>";
+            "<td>" + (i + 1) + "</td>" +
+            "<td>" + data[i].NamaKaryawan + "</td>" +
+            "<td>" + data[i].NamaDevisi + "</td>" +
+            "<td>" +
+              '<button class="btn btn-success me-1" onclick="editUser(' + data[i].UserID + ')">Detail</button>' +
+              '<button class="btn btn-primary me-1" onclick="editUser(' + data[i].UserID + ')">Edit</button>' +
+              '<button class="btn btn-danger" onclick="deleteUser(' + data[i].UserID + ", '" + data[i].NamaKaryawan + "')\">Delete</button>";
+            "</td>" +
+          "</tr>";
         $("#table-body").append(row);
       }
 
@@ -61,8 +48,8 @@ $(document).ready(function () {
         .draw();
     },
     error: function (error) {
-      console.error("Error:", error);
-    },
+      console.error("Error fetching data:", error);
+    },  
   });
 });
 
@@ -84,8 +71,8 @@ function deleteUser(userId, userName) {
         location.reload();
       },
       error: function (error) {
-        console.error("Error:", error);
-      },
+        console.error("Error deleting user:", error);
+      },    
     });
   }
 }

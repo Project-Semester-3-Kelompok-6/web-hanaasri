@@ -14,17 +14,26 @@ if (isset($_GET['action'])) {
             // Mengambil data
             // Contoh: api.php?action=get_users
             if ($action == 'get_users') {
-                $query = "SELECT users.UserID, users.Nama AS NamaKaryawan, users.Status, devisi.NamaDevisi AS NamaDevisi
-                          FROM users
-                          INNER JOIN devisi ON users.DevisiID = devisi.DevisiID";
-                $result = $conn->query($query);
-
-                if ($result) {
-                    $users = $result->fetch_all(MYSQLI_ASSOC);
-                    echo json_encode($users);
+                if (isset($_GET['status'])) {
+                    $status = $_GET['status'];
+            
+                    $query = "SELECT users.UserID, users.Nama AS NamaKaryawan, devisi.NamaDevisi AS NamaDevisi
+                              FROM users
+                              INNER JOIN devisi ON users.DevisiID = devisi.DevisiID
+                              WHERE users.Status = '$status'";
+            
+                    $result = $conn->query($query);
+            
+                    if ($result) {
+                        $users = $result->fetch_all(MYSQLI_ASSOC);
+                        echo json_encode($users);
+                    } else {
+                        http_response_code(500);
+                        echo json_encode(array("message" => "Error retrieving data"));
+                    }
                 } else {
-                    http_response_code(500);
-                    echo json_encode(array("message" => "Error retrieving data"));
+                    http_response_code(400);
+                    echo json_encode(array("message" => "'status' parameter is missing"));
                 }
             }
             break;
