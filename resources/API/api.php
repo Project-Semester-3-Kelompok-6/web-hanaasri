@@ -14,7 +14,7 @@ if (isset($_GET['action'])) {
             // Mengambil data
             // Contoh: api.php?action=get_users
             if ($action == 'get_users') {
-                $query = "SELECT users.UserID, users.Nama AS NamaKaryawan, devisi.NamaDevisi AS NamaDevisi
+                $query = "SELECT users.UserID, users.Nama AS NamaKaryawan, users.Status, devisi.NamaDevisi AS NamaDevisi
                           FROM users
                           INNER JOIN devisi ON users.DevisiID = devisi.DevisiID";
                 $result = $conn->query($query);
