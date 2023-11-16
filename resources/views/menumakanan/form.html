@@ -16,7 +16,8 @@
 <body>
     <div class="container-fluid">
         <div class="row row-cols-2">
-            <div class="d-flex flex-column justify-content-between col-auto bg-light min-vh-100 custom-sidebar" id="sidebar">
+            <!-- SideBar -->
+            <div class="d-flex flex-column justify-content-between bg-light min-vh-100 custom-sidebar" id="sidebar">
                 <div class="mt-4 w-100">
                     <div class="row row-cols-2" id="logotoggler">
                         <div class="d-flex justify-content-center col-sm-9">
@@ -31,7 +32,7 @@
                     <hr class="text-black"/>
                     <ul class="nav nav-pills flex-column mt-2 mt-sm-0" id="menu">
                         <li class="nav-item">
-                            <a class="nav-link text-black" href="../../dashboard/index.html" aria-current="page" id="Dashboard">
+                            <a class="nav-link text-black" href="#" aria-current="page" id="Dashboard">
                                 <i class="fa-solid fa-house"></i>
                                 <span class="ms-2">Dashboard</span>
                             </a>
@@ -41,29 +42,29 @@
                                 <i class="fa-solid fa-user"></i>
                                 <span class="ms-2">Karyawan</span>
                             </a>
-                            <ul class="nav collapse ms-3 flex-column" id="sidemenu" data-bs-parent="#menu">
+                            <ul class="nav collapse ms-3 flex-column show" id="sidemenu" data-bs-parent="#menu">
                                 <li class="nav-item">
-                                    <a class="nav-link text-black" href="../../karyawan/karyawan tetap/index.html">Karyawan Tetap</a>
+                                    <a class="nav-link text-black" href="#">Karyawan Tetap</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-black" href="../../karyawan/karyawantidaktetap/index.html">Karyawan Tidak Tetap</a>
+                                    <a class="nav-link text-black" href="#">Karyawan Tidak Tetap</a>
                                 </li>
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-black" href="../../absensi/index.html" aria-current="page">
+                            <a class="nav-link text-black" href="#" aria-current="page">
                                 <i class="fa-regular fa-calendar-days"></i>
                                 <span class="ms-2">Absen Karyawan</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-black" href="../../tugaskaryawan/index.html" aria-current="page">
+                            <a class="nav-link text-black" href="#" aria-current="page">
                                 <i class="fa-solid fa-clipboard-list"></i>
                                 <span class="ms-2">Tugas Karyawan</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-black" href="../../menumakanan/index.html" aria-current="page">
+                            <a class="nav-link text-black" href="#" aria-current="page">
                                 <i class="fa-solid fa-utensils"></i>
                                 <span class="ms-2">Menu Makanan</span>
                             </a>
@@ -73,12 +74,12 @@
                                 <i class="fa-solid fa-file"></i>
                                 <span class="ms-2">Laporan</span>
                             </a>
-                            <ul class="nav collapse ms-3 flex-column show" id="sidemenu-2" data-bs-parent="#menu">
+                            <ul class="nav collapse ms-3 flex-column" id="sidemenu-2" data-bs-parent="#menu">
                                 <li class="nav-item">
-                                    <a class="nav-link text-black active" href="../../laporan/absensi/index.html">Absensi</a>
+                                    <a class="nav-link text-black" href="#">Absensi</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-black" href="../../laporan/tugas/index.html">Tugas</a>
+                                    <a class="nav-link text-black" href="#">Tugas</a>
                                 </li>
                             </ul>
                         </li>                      
@@ -92,9 +93,34 @@
                 </div>
             </div>
             <!-- Main Content -->
-            <div>
-                Main Content
-            </div>
+            <div class="col-xl-9">
+                <div class="container mt-4">
+                    <h1 class="text-black">Menu Makanan</h1>
+                    <div class="card mt-4">
+                        <div class="card-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="nama" class="form-label">Nama</label>
+                                    <input type="text" class="form-control" id="nama" placeholder="Masukkan Nama Makanan">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Satuan" class="form-label">Satuan</label>
+                                    <input type="text" class="form-control" id="Satuan" placeholder="Pilih Satuan">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Harga" class="form-label">Harga</label>
+                                    <input type="text" class="form-control" id="Harga" placeholder="Masukkan Harga Makanan">
+                                </div>
+                                <button type="submit" class="btn float-end"
+                                    style="background-color: rgba(255, 145, 76, 1);">
+                                    <i class="fa-regular fa-floppy-disk"></i>
+                                    Simpan
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- End of Card -->
+                </div>
         </div>
     </div>
     <!-- Tambahkan script untuk Bootstrap JavaScript -->

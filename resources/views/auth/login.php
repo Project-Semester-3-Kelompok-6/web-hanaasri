@@ -1,3 +1,49 @@
+<?php
+require('database.php');
+session_start();
+
+if (isset($_POST['submit'])) {
+    $email = mysqli_real_escape_string($conn, $_POST['txt_email']);
+    $pass = mysqli_real_escape_string($conn, $_POST['txt_pass']);
+
+    if (!empty(trim($email)) && !empty(trim($pass))) {
+        // Pilih data berdasarkan email dari database
+        $query = "SELECT * FROM users WHERE Email = '$email'";
+        $result = mysqli_query($conn, $query);
+        $num = mysqli_num_rows($result);
+
+        if ($num != 0) {
+            $row = mysqli_fetch_array($result);
+            $passVal = $row['user_password'];
+
+            if ($email == $row['Email'] && $passVal == $pass) {
+                $_SESSION['UserID'] = $row['UserID'];
+                $_SESSION['Email'] = $email;
+                $_SESSION['Nama'] = $row['Nama'];
+                $_SESSION['Role'] = $row['Role'];
+                $_SESSION['DevisiID'] = $row['DevisiID'];
+                $Nama = $_SESSION['Nama'];
+                header("Location: recources/views/dashboard/index.html");
+                exit();
+            
+            } else {
+                $error = 'Email atau password salah!!';
+                header('Location: login.php?error=' . urlencode($error));
+            }
+        } else {
+            $error = 'User tidak ditemukan!!';
+            header('Location: login.php?error=' . urlencode($error));
+        }
+    } else {
+        $error = 'Data tidak boleh kosong !!!';
+        header('Location: login.php?error=' . urlencode($error));
+    }
+} elseif (isset($_POST['register'])) {
+    header('Location: register.php');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,17 +81,17 @@
                             <p class="error"> <?php echo $_GET['error']; ?></p>
                             <?php } ?>  
                             <div class="form-outline mb-4">
-                                <label class="form-label" for="form2Example18">Email address</label>
-                                <input type="email" id="form2Example18" name="email" class="form-control form-control-lg" />
+                                <label class="form-label" for="email">Email address</label>
+                                <input type="email" id="email" name="email" class="form-control form-control-lg" />
                             </div>
                             <div class="form-outline mb-4">
-                                <label class="form-label" for="form2Example28">Password</label>
-                                <input type="password" id="form2Example28" name="password" class="form-control form-control-lg" />
+                                <label class="form-label" for="password">Password</label>
+                                <input type="password" id="password" name="password" class="form-control form-control-lg" />
                             </div>
                             <div class="pt-1 mb-4">
                                 <button type="submit" class="btn btn-dark btn-lg btn-block w-100">Login</button>
                             </div>
-                            <p class="small mb-5 pb-lg-2"><a class="text-muted" href="forgotPassword.php">Forgot password?</a></p>
+                            <p class="small mb-5 pb-lg-2"><a class="text-muted" href="lupapassword.php">Forgot password?</a></p>
                         </form>
                     </div>
                 </div>
