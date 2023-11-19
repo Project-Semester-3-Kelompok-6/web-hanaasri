@@ -1,7 +1,7 @@
 $(document).ready(function () {
   // Memanggil metode GET dari API
   $.ajax({
-    url: "http://localhost/web-hanaasri/resources/views/karyawan/api.php?action=get_users&status='Karyawan Tetap'",
+    url: "http://localhost/web-hanaasri/resources/views/karyawan/api.php?action=get_users&status='Karyawan Tidak Tetap'",
     method: "GET",
     dataType: "json",
     success: function (data) {
