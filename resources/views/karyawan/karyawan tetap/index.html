@@ -66,8 +66,7 @@
                                     <a class="nav-link text-black active" href="">Karyawan Tetap</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-black" href="../karyawantidaktetap/index.html">Karyawan
-                                        Tidak Tetap</a>
+                                    <a class="nav-link text-black" href="../karyawantidaktetap/index.html">Karyawan Tidak Tetap</a>
                                 </li>
                             </ul>
                         </li>
@@ -119,9 +118,16 @@
                     <div class="position-relative">
                         <h1 class="text-black"> Karyawan Tetap</h1>
                         <button type="button" class="btn text-white"
-                            style="background-color: rgba(255, 145, 76, 1); position: absolute; top: 0; right: 0;">
+                            style="background-color: rgba(255, 145, 76, 1); position: absolute; top: 0; right: 0;"
+                            onclick="redirectToForm()">
                             <i class="fa-solid fa-plus"></i> Tambah Data
                         </button>
+                        <script>
+                            function redirectToForm() {
+                                // Menggunakan location.href untuk mengarahkan ke halaman 'form.html'
+                                window.location.href = 'form.html';
+                            }
+                        </script>
                     </div>
 
                     <div class="card p-2 mt-4">
@@ -143,8 +149,7 @@
                 </div>
             </div>
         </div>
-        </div>
-
+    </div>
 </body>
 
 </html>

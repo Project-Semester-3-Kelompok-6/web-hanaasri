@@ -38,7 +38,7 @@ if (isset($_GET['action'])) {
             }
             break;
 
-        case 'POST':
+        case 'POST':  //belum
             // Menambah data
             // Contoh: api.php?action=add_user&name=John&email=john@example.com
             if ($action == 'add_user') {

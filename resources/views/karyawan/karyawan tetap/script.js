@@ -9,16 +9,17 @@ $(document).ready(function () {
       for (var i = 0; i < data.length; i++) {
         var row =
           "<tr>" +
-            "<td>" + (i + 1) + "</td>" +
-            "<td>" + data[i].Nama + "</td>" +
-            "<td>" + data[i].NamaDevisi + "</td>" +
-            "<td>" +
-              '<button class="btn btn-success me-1" onclick="editUser(' + data[i].UserID + ')">Detail</button>' +
-              '<button class="btn btn-primary me-1" onclick="editUser(' + data[i].UserID + ')">Edit</button>' +
-              '<button class="btn btn-danger" onclick="deleteUser(' + data[i].UserID + ", '" + data[i].Nama + "')\">Delete</button>";
-            "</td>" +
+          "<td>" + (i + 1) + "</td>" +
+          "<td>" + data[i].Nama + "</td>" +
+          "<td>" + data[i].NamaDevisi + "</td>" +
+          "<td>" +
+          '<button class="btn btn-success me-1" onclick="showDetailModal(' + data[i].UserID + ')">Detail</button>' +
+          '<button class="btn btn-primary me-1" onclick="editUser(' + data[i].UserID + ')">Edit</button>' +
+          '<button class="btn btn-danger" onclick="deleteUser(' + data[i].UserID + ", '" + data[i].Nama + "')\">Delete</button>" +
+          "</td>" +
           "</tr>";
         $("#table-body").append(row);
+
       }
 
       // Inisialisasi DataTable setelah memasukkan data
@@ -49,31 +50,11 @@ $(document).ready(function () {
     },
     error: function (error) {
       console.error("Error fetching data:", error);
-    },  
+    },
   });
 });
 
-// Menampilkan modal 'Detail' dengan data dari API
-function showDetailModal(userId) {
-  $.ajax({
-    url: "http://localhost/web-hanaasri/resources/views/karyawan/api.php?action=get_users&id=" + userId,
-    method: "GET",
-    dataType: "json",
-    success: function (data) {
-      // Mengisi modal dengan data karyawan
-      $('#nama').val(data.NamaKaryawan);
-      $('#email').val(data.Email);
-      $('#password').val(data.Password);
-      $('#divisi').val(data.NamaDevisi);
 
-      // Menampilkan modal
-      $('#employeeModal').modal('show');
-    },
-    error: function (error) {
-      console.error("Error fetching user data:", error);
-    },
-  });
-}
 
 // Memanggil method DELETE dari API
 function deleteUser(userId, userName) {
@@ -93,7 +74,7 @@ function deleteUser(userId, userName) {
       },
       error: function (error) {
         console.error("Error deleting user:", error);
-      },    
+      },
     });
   }
 }
