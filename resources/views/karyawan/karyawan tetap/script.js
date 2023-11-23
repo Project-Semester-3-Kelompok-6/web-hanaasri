@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    isiDropdownDevisi();
     $("#togglePassword").click(function () {
         var passwordField = $("#detailPassword");
         var icon = $(this).find("i");
@@ -116,7 +115,6 @@ function isiDropdownDevisi() {
         },
     });
 }
-
 
 // Tambahkan fungsi untuk membersihkan formulir tambah setelah ditutup
 $('#tambahModal').on('hidden.bs.modal', function () {
