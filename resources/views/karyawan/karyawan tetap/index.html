@@ -159,7 +159,7 @@
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
@@ -225,6 +225,27 @@
             });
         });
 
+        // Add this function to script.js
+        function showDetailModal(userId) {
+            // Make an AJAX request to get user details
+            $.ajax({
+                url: "http://localhost/web-hanaasri/resources/views/karyawan/api.php?action=get_user_detail&id=" + userId,
+                method: "GET",
+                dataType: "json",
+                success: function (user) {
+                    // Populate the modal with user details
+                    $("#detailNama").val(user.Nama);
+                    $("#detailEmail").val(user.Email);
+                    $("#detailDivisi").val(user.NamaDevisi);
+
+                    // Show the modal
+                    $("#detailModal").modal("show");
+                },
+                error: function (error) {
+                    console.error("Error fetching user details:", error);
+                },
+            });
+        }
 
 
         // Memanggil method DELETE dari API
@@ -250,27 +271,6 @@
             }
         }
 
-        // Add this function to script.js
-        function showDetailModal(userId) {
-            // Make an AJAX request to get user details
-            $.ajax({
-                url: "http://localhost/web-hanaasri/resources/views/karyawan/api.php?action=get_user_detail&id=" + userId,
-                method: "GET",
-                dataType: "json",
-                success: function (user) {
-                    // Populate the modal with user details
-                    $("#detailNama").val(user.Nama);
-                    $("#detailEmail").val(user.Email);
-                    $("#detailDivisi").val(user.NamaDevisi);
-
-                    // Show the modal
-                    $("#detailModal").modal("show");
-                },
-                error: function (error) {
-                    console.error("Error fetching user details:", error);
-                },
-            });
-        }
     </script>
 </body>
 
