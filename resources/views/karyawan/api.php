@@ -12,7 +12,6 @@ if (isset($_GET['action'])) {
     switch ($request_method) {
         case 'GET':
             // Mengambil data
-            // Contoh: api.php?action=get_users
             if ($action == 'get_users') {
                 if (isset($_GET['status'])) {
                     $status = $_GET['status'];
@@ -35,18 +34,20 @@ if (isset($_GET['action'])) {
                     http_response_code(400);
                     echo json_encode(array("message" => "'status' parameter is missing"));
                 }
+                break;
             }
+
             if ($action == 'get_user_detail') {
                 if (isset($_GET['id'])) {
                     $userId = $_GET['id'];
-    
+
                     $query = "SELECT users.*, devisi.NamaDevisi
                       FROM users
                       INNER JOIN devisi ON users.DevisiID = devisi.DevisiID
                       WHERE users.UserID = $userId";
-    
+
                     $result = $conn->query($query);
-    
+
                     if ($result) {
                         $userDetail = $result->fetch_assoc();
                         echo json_encode($userDetail);
@@ -58,12 +59,27 @@ if (isset($_GET['action'])) {
                     http_response_code(400);
                     echo json_encode(array("message" => "'id' parameter is missing"));
                 }
+                break;
             }
-            break;
 
-        case 'POST':  //belum
-            // Menambah data
-            // Contoh: api.php?action=add_user&name=John&email=john@example.com
+            // Tambahkan endpoint untuk mendapatkan data devisi
+            if ($action == 'get_devisi') {
+                $query = "SELECT * FROM devisi";
+                $result = $conn->query($query);
+
+                if ($result) {
+                    $devisi = $result->fetch_all(MYSQLI_ASSOC);
+                    echo json_encode($devisi);
+                } else {
+                    http_response_code(500);
+                    echo json_encode(array("message" => "Error retrieving devisi data"));
+                }
+                break;
+            }
+            
+
+        case 'POST':
+            // API Tambah Data
             if ($action == 'add_user') {
                 $name = $_POST['name'];
                 $email = $_POST['email'];
@@ -74,6 +90,26 @@ if (isset($_GET['action'])) {
                 } else {
                     http_response_code(500);
                     echo json_encode(array("message" => "Error adding user"));
+                }
+            }
+            break;
+
+            if ($action == 'update_user') {
+                $userId = $_POST['userId'];
+                $nama = $_POST['nama'];
+                $email = $_POST['email'];
+                $password = $_POST['password'];
+                $divisiID = $_POST['divisiID'];
+
+                $query = "UPDATE users 
+                          SET Nama = '$nama', Email = '$email', Password = '$password', DevisiID = '$divisiID'
+                          WHERE UserID = $userId";
+
+                if ($conn->query($query)) {
+                    echo json_encode(array("message" => "User updated successfully"));
+                } else {
+                    http_response_code(500);
+                    echo json_encode(array("message" => "Error updating user"));
                 }
             }
             break;

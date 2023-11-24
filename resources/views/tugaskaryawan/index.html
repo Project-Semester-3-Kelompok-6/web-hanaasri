@@ -1,32 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <!-- Tambahkan link ke file CSS Bootstrap -->
-    <link class="nav-link" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font -->
     <link rel="preconnect" class="nav-link" href="https://fonts.googleapis.com">
     <link rel="preconnect" class="nav-link" href="https://fonts.gstatic.com" crossorigin>
     <link class="nav-link" href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- CSS Bootstrap -->
+    <link class="nav-link" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+    <!-- CSS DataTable -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <!-- CSS -->
     <link rel="stylesheet" class="nav-link" href="index.css">
-    <!-- JS -->
-    <script src="index.js"></script>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" /></head>
+
+    <!-- JS Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- JS Query -->
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <!-- JS DataTable -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <!-- JS Script -->
+    <script src="script.js"></script>
+</head>
+
 <body>
     <div class="container-fluid">
         <div class="row row-cols-2">
-            <div class="d-flex flex-column justify-content-between col-auto bg-light min-vh-100 custom-sidebar" id="sidebar">
+            <div class="d-flex flex-column justify-content-between col-auto bg-light min-vh-100 custom-sidebar"
+                id="sidebar">
                 <div class="mt-4 w-100">
                     <div class="d-flex justify-content-center align-items-center" id="logotoggler">
                         <div class="d-flex justify-content-center col-sm-9">
                             <img src="img/Logo.png" alt="Logo Hana Asri" height="50px">
                         </div>
-                    </div>                                                     
-                    <hr class="text-black"/>
+                    </div>
+                    <hr class="text-black" />
                     <ul class="nav nav-pills flex-column mt-2 mt-sm-0" id="menu">
                         <li class="nav-item">
-                            <a class="nav-link text-black" href="../dashboard/index.html" aria-current="page" id="Dashboard">
+                            <a class="nav-link text-black" href="../dashboard/index.html" aria-current="page"
+                                id="Dashboard">
                                 <i class="fa-solid fa-house"></i>
                                 <span class="ms-2">Dashboard</span>
                             </a>
@@ -38,10 +57,12 @@
                             </a>
                             <ul class="nav collapse ms-3 flex-column" id="sidemenu" data-bs-parent="#menu">
                                 <li class="nav-item">
-                                    <a class="nav-link text-black" href="../karyawan/karyawan tetap/index.html">Karyawan Tetap</a>
+                                    <a class="nav-link text-black" href="../karyawan/karyawan tetap/index.html">Karyawan
+                                        Tetap</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-black" href="../karyawan/karyawantidaktetap/index.html">Karyawan Tidak Tetap</a>
+                                    <a class="nav-link text-black"
+                                        href="../karyawan/karyawantidaktetap/index.html">Karyawan Tidak Tetap</a>
                                 </li>
                             </ul>
                         </li>
@@ -52,7 +73,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-black active" href="../tugaskaryawan/index.html" aria-current="page">
+                            <a class="nav-link text-black active" href="../tugaskaryawan/index.html"
+                                aria-current="page">
                                 <i class="fa-solid fa-clipboard-list"></i>
                                 <span class="ms-2">Tugas Karyawan</span>
                             </a>
@@ -70,7 +92,7 @@
                                     <a class="nav-link text-black" href="../laporan/tugas/index.html">Tugas</a>
                                 </li>
                             </ul>
-                        </li>                      
+                        </li>
                     </ul>
                 </div>
                 <div class="mb-5">
@@ -81,12 +103,38 @@
                 </div>
             </div>
             <!-- Main Content -->
+            <div class="col-xl-9 col-rows-1">
+                <div class="container m-4">
+                    <div class="position-relative">
+                        <h1 class="text-black"> Tugas Karyawan</h1>
+                        <button type="button" class="btn text-white"
+                            style="background-color: rgba(255, 145, 76, 1); position: absolute; top: 0; right: 0;"
+                            data-bs-toggle="modal" data-bs-target="#tambahModal">
+                            <i class="fa-solid fa-plus"></i> Tambah Data
+                        </button>
+                    </div>
+
+                    <div class="card p-2 mt-4">
+                        <table id="example" class="display" width=100%>
+                            <thead>
+                                <tr>
+                                    <th data-orderable="false">No</th>
+                                    <th>Nama Karyawan</th>
+                                    <th>Devisi</th>
+                                    <th>Tanggl</th>
+                                    <th>Lokasi</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-body">
+                                <!-- Data akan dimuat di sini melalui JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             <div>
-                Main Content
-            </div>
         </div>
     </div>
-    <!-- Tambahkan script untuk Bootstrap JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

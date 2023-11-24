@@ -9,16 +9,17 @@ $(document).ready(function () {
       for (var i = 0; i < data.length; i++) {
         var row =
           "<tr>" +
-            "<td>" + (i + 1) + "</td>" +
-            "<td>" + data[i].Nama + "</td>" +
-            "<td>" + data[i].NamaDevisi + "</td>" +
-            "<td>" +
-              '<button class="btn btn-success me-1" onclick="editUser(' + data[i].UserID + ')">Detail</button>' +
-              '<button class="btn btn-primary me-1" onclick="editUser(' + data[i].UserID + ')">Edit</button>' +
-              '<button class="btn btn-danger" onclick="deleteUser(' + data[i].UserID + ", '" + data[i].Nama + "')\">Delete</button>";
-            "</td>" +
+          "<td>" + (i + 1) + "</td>" +
+          "<td>" + data[i].Nama + "</td>" +
+          "<td>" + data[i].NamaDevisi + "</td>" +
+          "<td>" +
+          '<button class="btn btn-success me-1" onclick="showDetailModal(' + data[i].UserID + ')">Detail</button>' +
+          '<button class="btn btn-primary me-1" onclick="editUser(' + data[i].UserID + ')">Edit</button>' +
+          '<button class="btn btn-danger" onclick="deleteUser(' + data[i].UserID + ", '" + data[i].Nama + "')\">Delete</button>" +
+          "</td>" +
           "</tr>";
         $("#table-body").append(row);
+
       }
 
       // Inisialisasi DataTable setelah memasukkan data
@@ -49,28 +50,34 @@ $(document).ready(function () {
     },
     error: function (error) {
       console.error("Error fetching data:", error);
-    },  
+    },
   });
 });
 
-// Menampilkan modal 'Detail' dengan data dari API
+// Membuka Form Tambah
+function redirectToForm() {
+  // Menggunakan jQuery untuk menampilkan modal tambah
+  $("#tambahModal").modal("show");
+}
+
+// Add this function to script.js
 function showDetailModal(userId) {
+  // Make an AJAX request to get user details
   $.ajax({
-    url: "http://localhost/web-hanaasri/resources/views/karyawan/api.php?action=get_users&id=" + userId,
+    url: "http://localhost/web-hanaasri/resources/views/karyawan/api.php?action=get_user_detail&id=" + userId,
     method: "GET",
     dataType: "json",
-    success: function (data) {
-      // Mengisi modal dengan data karyawan
-      $('#nama').val(data.NamaKaryawan);
-      $('#email').val(data.Email);
-      $('#password').val(data.Password);
-      $('#divisi').val(data.NamaDevisi);
+    success: function (user) {
+      // Populate the modal with user details
+      $("#detailNama").val(user.Nama);
+      $("#detailEmail").val(user.Email);
+      $("#detailDivisi").val(user.NamaDevisi);
 
-      // Menampilkan modal
-      $('#employeeModal').modal('show');
+      // Show the modal
+      $("#detailModal").modal("show");
     },
     error: function (error) {
-      console.error("Error fetching user data:", error);
+      console.error("Error fetching user details:", error);
     },
   });
 }
@@ -93,7 +100,7 @@ function deleteUser(userId, userName) {
       },
       error: function (error) {
         console.error("Error deleting user:", error);
-      },    
+      },
     });
   }
 }
