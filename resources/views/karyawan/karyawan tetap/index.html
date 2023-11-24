@@ -49,6 +49,15 @@
                                         style="color: #000000;"></i></span>
                             </button>
                         </div>
+                        <div class="d-flex align-items-center justify-content-center col-sm-3 ms-auto">
+                            <button class="navbar-toggler text-black border-1 rounded-5 p-2" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#sidebarCollapse"
+                                aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle sidebar"
+                                id="sidtog">
+                                <span role="button"><i class="fa fa-bars" aria-hidden="true"
+                                        style="color: #000000;"></i></span>
+                            </button>
+                        </div>
                     </div>
                     <hr class="text-black" />
                     <ul class="nav nav-pills flex-column mt-2 mt-sm-0" id="menu">
@@ -88,6 +97,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-black" href="#" aria-current="page">
+                                <i class="fa-solid fa-utensils"></i>
+                                <span class="ms-2">Menu Makanan</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-black" href="#sidemenu-2" data-bs-toggle="collapse">
                                 <i class="fa-solid fa-file"></i>
                                 <span class="ms-2">Laporan</span>
@@ -121,6 +136,12 @@
                             data-bs-toggle="modal" data-bs-target="#tambahModal">
                             <i class="fa-solid fa-plus"></i> Tambah Data
                         </button>
+                        <script>
+                            function redirectToForm() {
+                                // Menggunakan location.href untuk mengarahkan ke halaman 'form.html'
+                                window.location.href = 'form.html';
+                            }
+                        </script>
                     </div>
                     <div class="card p-2 mt-4">
                         <table id="example" class="display" width=100%>
