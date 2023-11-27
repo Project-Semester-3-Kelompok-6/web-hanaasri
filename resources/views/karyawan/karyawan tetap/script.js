@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    isiDropdownDevisi();
     $("#togglePassword").click(function () {
         var passwordField = $("#detailPassword");
         var icon = $(this).find("i");
@@ -40,11 +39,14 @@ $(document).ready(function () {
             // Inisialisasi DataTable setelah memasukkan data
             var table = $("#example").DataTable({
                 order: [],
+                pageLength: 8,
+                lengthChange: false,
+                lengthMenu: [7, 10, 25, 50],  // Menentukan opsi jumlah entri yang ditampilkan
                 columnDefs: [
                     {
                         orderable: false,
-                        targets: 3,
-                    }, // Nonaktifkan pengurutan pada kolom Aksi
+                        target:3,
+                    },
                 ],
             });
 
@@ -69,9 +71,9 @@ $(document).ready(function () {
     });
 });
 
-// Add this function to script.js
+// Show Detail Modal
 function showDetailModal(userId) {
-    // Make an AJAX request to get user details
+    // Get data user_details
     $.ajax({
         url: "http://localhost/web-hanaasri/resources/views/karyawan/api.php?action=get_user_detail&id=" + userId,
         method: "GET",
@@ -98,6 +100,7 @@ function redirectToForm() {
     $("#tambahModal").modal("show");
 }
 
+// Dropdown devisi
 function isiDropdownDevisi() {
     $.ajax({
         url: "http://localhost/web-hanaasri/resources/views/karyawan/api.php?action=get_devisi",
