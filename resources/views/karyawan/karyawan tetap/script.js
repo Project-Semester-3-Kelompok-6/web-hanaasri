@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    isiDropdownDevisi();
     $("#togglePassword").click(function () {
         var passwordField = $("#detailPassword");
         var icon = $(this).find("i");
@@ -107,9 +108,12 @@ function isiDropdownDevisi() {
         method: "GET",
         dataType: "json",
         success: function (data) {
-            console.log("Data devisi:", data); // Tambahkan ini untuk melihat data devisi dalam konsol
             var dropdown = $("#inputDivisi");
+
+            // Kosongkan dropdown terlebih dahulu
             dropdown.empty();
+
+            // Tambahkan opsi-opsi devisi dari data yang diterima
             for (var i = 0; i < data.length; i++) {
                 dropdown.append($("<option></option>").attr("value", data[i].DevisiID).text(data[i].NamaDevisi));
             }

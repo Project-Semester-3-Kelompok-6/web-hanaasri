@@ -77,21 +77,6 @@ if (isset($_GET['action'])) {
                 break;
             }
 
-            if ($action == 'get_job') {
-                $query = "SELECT * FROM job";
-                $result = $conn->query($query);
-
-                if ($result) {
-                    $devisi = $result->fetch_all(MYSQLI_ASSOC);
-                    echo json_encode($devisi);
-                } else {
-                    http_response_code(500);
-                    echo json_encode(array("message" => "Error retrieving devisi data"));
-                }
-                break;
-            }
-            
-
         case 'POST':
             // API Tambah Data
             if ($action == 'add_user') {
