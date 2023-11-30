@@ -17,7 +17,7 @@ if (isset($_GET['action'])) {
                           FROM job
                           INNER JOIN users ON job.KaryawanID = users.UserID
                           INNER JOIN devisi ON users.DevisiID = devisi.DevisiID
-                          ORDER BY Tanggal;";
+                          ORDER BY Tanggal DESC;";
                 $result = $conn->query($query);
 
                 if ($result) {
@@ -30,6 +30,23 @@ if (isset($_GET['action'])) {
                 break;
             }
             
+            if ($action == 'get_absensi') {
+                $query = "SELECT absensi.*, users.Nama, devisi.NamaDevisi
+                          FROM absensi
+                          INNER JOIN users ON absensi.KaryawanID = users.UserID
+                          INNER JOIN devisi ON users.UserID = devisi.DevisiID
+                          ORDER BY Tanggal DESC;";
+                $result = $conn->query($query);
+
+                if ($result) {
+                    $devisi = $result->fetch_all(MYSQLI_ASSOC);
+                    echo json_encode($devisi);
+                } else {
+                    http_response_code(500);
+                    echo json_encode(array("message" => "Error retrieving job data"));
+                }
+                break;
+            }
 
         case 'POST':
             // API Tambah Data
