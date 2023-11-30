@@ -53,7 +53,7 @@
                     <hr class="text-black" />
                     <ul class="nav nav-pills flex-column mt-2 mt-sm-0" id="menu">
                         <li class="nav-item">
-                            <a class="nav-link text-black" href="../../dashboard/index.html" aria-current="page" id="Dashboard">
+                            <a class="nav-link text-black" href="#" aria-current="page" id="Dashboard">
                                 <i class="fa-solid fa-house"></i>
                                 <span class="ms-2">Dashboard</span>
                             </a>
@@ -65,7 +65,7 @@
                             </a>
                             <ul class="nav collapse ms-3 flex-column show" id="sidemenu" data-bs-parent="#menu">
                                 <li class="nav-item">
-                                    <a class="nav-link text-black active" href="index.html">Karyawan Tetap</a>
+                                    <a class="nav-link text-black active" href="">Karyawan Tetap</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-black" href="../karyawantidaktetap/index.html">Karyawan
@@ -74,17 +74,21 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-black" href="../../absensi/index.html" aria-current="page">
+                            <a class="nav-link text-black" href="#" aria-current="page">
                                 <i class="fa-regular fa-calendar-days"></i>
                                 <span class="ms-2">Absen Karyawan</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-black"
-                                href="http://localhost/web-hanaasri/resources/views/tugaskaryawan/index.html"
-                                aria-current="page">
+                            <a class="nav-link text-black" href="#" aria-current="page">
                                 <i class="fa-solid fa-clipboard-list"></i>
                                 <span class="ms-2">Tugas Karyawan</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-black" href="#" aria-current="page">
+                                <i class="fa-solid fa-utensils"></i>
+                                <span class="ms-2">Menu Makanan</span>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -94,10 +98,10 @@
                             </a>
                             <ul class="nav collapse ms-3 flex-column" id="sidemenu-2" data-bs-parent="#menu">
                                 <li class="nav-item">
-                                    <a class="nav-link text-black" href="../../laporan/absensi/index.html">Absensi</a>
+                                    <a class="nav-link text-black" href="#">Absensi</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-black" href="../../laporan/tugas/index.html">Tugas</a>
+                                    <a class="nav-link text-black" href="#">Tugas</a>
                                 </li>
                             </ul>
                         </li>
@@ -121,13 +125,52 @@
                             data-bs-toggle="modal" data-bs-target="#tambahModal">
                             <i class="fa-solid fa-plus"></i> Tambah Data
                         </button>
-                        <script>
-                            function redirectToForm() {
-                                // Menggunakan location.href untuk mengarahkan ke halaman 'form.html'
-                                window.location.href = 'form.html';
-                            }
-                        </script>
+
+                        <!-- Modal Tambah Data -->
+                        <div class="modal fade" id="tambahModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Tambah Karyawan</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Formulir Tambah Data -->
+                                        <form id="tambahForm">
+                                            <div class="mb-3">
+                                                <label for="inputNama" class="form-label">Nama</label>
+                                                <input type="text" class="form-control" id="inputNama" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="inputEmail" class="form-label">Email</label>
+                                                <input type="email" class="form-control" id="inputEmail" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="inputPassword" class="form-label">Password</label>
+                                                <input type="password" class="form-control" id="inputPassword" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="inputDivisi" class="form-label">Divisi</label>
+                                                <select class="form-select" id="inputDivisi" required>
+                                                    <!-- NamaDevisi akan dimuat melalui JavaScript -->
+                                                </select>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Tutup</button>
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="simpanData()">Simpan</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
+
                     <div class="card p-2 mt-4">
                         <table id="example" class="display" width=100%>
                             <thead>
@@ -144,9 +187,6 @@
                         </table>
                     </div>
                 </div>
-
-                <!-- Modal -->
-
                 <!-- Modal Detail Form -->
                 <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
@@ -160,7 +200,7 @@
                             <div class="modal-body">
                                 <form id="detailForm">
                                     <div class="mb-3">
-                                        <label for="detailNama" class="form-label">Namamma</label>
+                                        <label for="detailNama" class="form-label">Nama</label>
                                         <input type="text" class="form-control" id="detailNama" readonly>
                                     </div>
                                     <div class="mb-3">
@@ -175,6 +215,7 @@
                                                 <i class="fa fa-eye" aria-hidden="true"></i>
                                             </button>
                                         </div>
+
                                     </div>
                                     <div class="mb-3">
                                         <label for="detailDivisi" class="form-label">Divisi</label>
@@ -184,49 +225,6 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Modal Tambah Data -->
-                <div class="modal fade" id="tambahModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Tambah Karyawan</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <!-- Formulir Tambah Data -->
-                                <form id="tambahForm">
-                                    <div class="mb-3">
-                                        <label for="inputNama" class="form-label">Nama</label>
-                                        <input type="text" class="form-control" id="inputNama" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="inputEmail" class="form-label">Email</label>
-                                        <input type="email" class="form-control" id="inputEmail" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="inputPassword" class="form-label">Password</label>
-                                        <input type="password" class="form-control" id="inputPassword" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="inputDivisi" class="form-label">Divisi</label>
-                                        <select class="form-select" id="inputDivisi" required>
-                                            <!-- NamaDevisi akan dimuat melalui JavaScript -->
-                                        </select>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Tutup</button>
-                                        <button type="button" class="btn btn-primary"
-                                            onclick="simpanData()">Simpan</button>
-                                    </div>
-                                </form>
                             </div>
                         </div>
                     </div>
