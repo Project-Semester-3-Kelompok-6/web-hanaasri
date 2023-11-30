@@ -81,9 +81,35 @@
                 </div>
             </div>
             <!-- Main Content -->
-            <div>
-                Main Content
-            </div>
+            <div class="col-xl-9 col-rows-1">
+                <div class="container m-4">
+                    <div class="position-relative">
+                        <h1 class="text-black">Laporan Absensi</h1>
+                        
+                        <script>
+                            function redirectToForm() {
+                                // Menggunakan location.href untuk mengarahkan ke halaman 'form.html'
+                                window.location.href = 'form.html';
+                            }
+                        </script>
+                    </div>
+                    <div class="card p-2 mt-4">
+                        <table id="example" class="display" width=100%>
+                            <thead>
+                                <tr>
+                                    <th data-orderable="false">No</th>
+                                    <th>Nama Karyawan</th>
+                                    <th>Devisi</th>
+                                    <th>Tanggal</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-body">
+                                <!-- Data akan dimuat di sini melalui JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
         </div>
     </div>
     <!-- Tambahkan script untuk Bootstrap JavaScript -->

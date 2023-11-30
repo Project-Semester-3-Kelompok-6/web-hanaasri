@@ -39,7 +39,7 @@ $(document).ready(function () {
             // Inisialisasi DataTable setelah memasukkan data
             var table = $("#example").DataTable({
                 order: [],
-                pageLength: 8,
+                pageLength: 7,
                 lengthChange: false,
                 lengthMenu: [7, 10, 25, 50],  // Menentukan opsi jumlah entri yang ditampilkan
                 columnDefs: [
