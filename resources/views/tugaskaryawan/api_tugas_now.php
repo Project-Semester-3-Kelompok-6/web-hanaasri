@@ -12,30 +12,12 @@ if (isset($_GET['action'])) {
     switch ($request_method) {
         case 'GET':
             // Mengambil data job
-            if ($action == 'get_job') {
+            if ($action == 'get_job_now') {
                 $query = "SELECT job.*, users.Nama, devisi.NamaDevisi
                           FROM job
                           INNER JOIN users ON job.KaryawanID = users.UserID
                           INNER JOIN devisi ON users.DevisiID = devisi.DevisiID
-                          ORDER BY Tanggal DESC;";
-                $result = $conn->query($query);
-
-                if ($result) {
-                    $devisi = $result->fetch_all(MYSQLI_ASSOC);
-                    echo json_encode($devisi);
-                } else {
-                    http_response_code(500);
-                    echo json_encode(array("message" => "Error retrieving job data"));
-                }
-                break;
-            }
-            
-            if ($action == 'get_absensi') {
-                $query = "SELECT absensi.Tanggal, absensi.Status, absensi.Lokasi, users.Nama, devisi.NamaDevisi
-                FROM users
-                INNER JOIN absensi ON users.UserID = absensi.KaryawanID
-                INNER JOIN devisi ON devisi.DevisiID = users.UserID
-                ORDER BY absensi.Tanggal DESC;";
+                          WHERE DATE(job.Tanggal) = CURDATE()";
                 $result = $conn->query($query);
 
                 if ($result) {

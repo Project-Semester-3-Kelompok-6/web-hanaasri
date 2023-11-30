@@ -1,7 +1,7 @@
 $(document).ready(function () {
     // Memanggil metode GET dari API
     $.ajax({
-        url: "http://localhost/web-hanaasri/resources/views/absensi/api_absensi.php?action=get_absensi_now",
+        url: "http://localhost/web-hanaasri/resources/views/tugaskaryawan/api_tugas_now.php?action=get_job_now",
         method: "GET",
         dataType: "json",
         success: function (data) {
@@ -13,8 +13,12 @@ $(document).ready(function () {
                     "<td>" + data[i].Nama + "</td>" +
                     "<td>" + data[i].NamaDevisi + "</td>" +
                     "<td>" + data[i].Tanggal + "</td>" +
+                    "<td>" + data[i].Judul + "</td>" +
                     "<td>" + data[i].Status + "</td>" +
-                    "<td>" + data[i].Lokasi + "</td>" +
+                    "<td>" +
+                    '<button class="btn btn-success me-1" onclick="showDetailModal(' + data[i].UserID + ')">Detail</button>' +
+                    '<button class="btn btn-danger" onclick="deleteUser(' + data[i].UserID + ", '" + data[i].Nama + "')\">Delete</button>" +
+                    "</td>" +
                     "</tr>";
                 $("#table-body").append(row);
             }
@@ -49,6 +53,10 @@ $(document).ready(function () {
                     {
                         orderable: false,
                         target:5,
+                    },
+                    {
+                        orderable: false,
+                        target:6,
                     },
                 ],
             });

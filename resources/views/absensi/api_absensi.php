@@ -12,22 +12,21 @@ if (isset($_GET['action'])) {
     switch ($request_method) {
         case 'GET':
             // Mengambil data absensi hari ini
-            if ($action == 'get_absensi') {
-                $current_date = date("Y-m-d");
+            if ($action == 'get_absensi_now') {
                 $query = "SELECT absensi.*, users.Nama, devisi.NamaDevisi
-                FROM absensi
-                INNER JOIN users ON absensi.KaryawanID = users.UserID
-                INNER JOIN devisi ON users.UserID = devisi.DevisiID
-                WHERE Tanggal = '$current_date'
-                ORDER BY Tanggal DESC";
+                          FROM absensi
+                          INNER JOIN users ON absensi.KaryawanID = users.UserID
+                          INNER JOIN devisi ON users.DevisiID = devisi.DevisiID
+                          WHERE DATE(absensi.Tanggal) = CURDATE()";
 
                 $result = $conn->query($query);
 
                 if ($result) {
+                    $devisi = $result->fetch_all(MYSQLI_ASSOC);
                     echo json_encode($devisi);
                 } else {
                     http_response_code(500);
-                    echo json_encode(array("message" => "Error retrieving data absensi terbaru"));
+                    echo json_encode(array("message" => "Error retrieving job data"));
                 }
                 break;
             }
