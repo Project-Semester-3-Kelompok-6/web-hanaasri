@@ -56,8 +56,7 @@
                             </a>
                             <ul class="nav collapse ms-3 flex-column show" id="sidemenu" data-bs-parent="#menu">
                                 <li class="nav-item">
-                                    <a class="nav-link text-black" href="../karyawan tetap/index.html">Karyawan
-                                        Tetap</a>
+                                    <a class="nav-link text-black" href="../karyawan tetap/index.html">Karyawan Tetap</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-black active" href="index.html">Karyawan Tidak Tetap</a>
@@ -204,9 +203,16 @@
                                         <input type="password" class="form-control" id="inputPassword" required>
                                     </div>
                                     <div class="mb-3">
+                                        <label for="inputStatus" class="form-label">Status</label>
+                                        <select class="form-select" id="inputStatus" required>
+                                            <option>Karyawan Tetap</option>
+                                            <option>Karyawan Tidak Tetap</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
                                         <label for="inputDivisi" class="form-label">Divisi</label>
                                         <select class="form-select" id="inputDivisi" required>
-                                            <!-- NamaDevisi akan dimuat melalui JavaScript -->
+                                            <!-- Daftar divisi NamaDevisi dari JS -->
                                         </select>
                                     </div>
                                     <div class="modal-footer">

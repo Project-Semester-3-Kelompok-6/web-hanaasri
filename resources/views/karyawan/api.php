@@ -62,9 +62,10 @@ if (isset($_GET['action'])) {
                 break;
             }
 
-            // Tambahkan endpoint untuk mendapatkan data devisi
+            // Daftar Devisi
             if ($action == 'get_devisi') {
-                $query = "SELECT * FROM devisi";
+                $query = "SELECT * FROM devisi
+                          ORDER BY NamaDevisi ASC";
                 $result = $conn->query($query);
 
                 if ($result) {
@@ -77,21 +78,25 @@ if (isset($_GET['action'])) {
                 break;
             }
 
-        case 'POST':
-            // API Tambah Data
-            if ($action == 'add_user') {
-                $name = $_POST['name'];
-                $email = $_POST['email'];
-
-                $query = "INSERT INTO users (name, email) VALUES ('$name', '$email')";
-                if ($conn->query($query)) {
-                    echo json_encode(array("message" => "User added successfully"));
-                } else {
-                    http_response_code(500);
-                    echo json_encode(array("message" => "Error adding user"));
+            case 'POST':
+                // API Tambah Data
+                if ($action == 'add_user') {
+                    $nama = $_POST['nama'];
+                    $email = $_POST['email'];
+                    $password = $_POST['password'];
+                    $status = $_POST['status'];
+                    $divisiID = $_POST['divisiID'];
+            
+                    $query = "INSERT INTO users (Nama, Email, Password, Status,  DevisiID) VALUES ('$nama', '$email', '$password', '$status', '$divisiID')";
+                    
+                    if ($conn->query($query)) {
+                        echo json_encode(array("message" => "User added successfully"));
+                    } else {
+                        http_response_code(500);
+                        echo json_encode(array("message" => "Error adding user: " . $conn->error));
+                    }
+                    break;
                 }
-            }
-            break;
 
             if ($action == 'update_user') {
                 $userId = $_POST['userId'];

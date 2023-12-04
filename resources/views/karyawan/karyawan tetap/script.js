@@ -1,7 +1,24 @@
 $(document).ready(function () {
+
     isiDropdownDevisi();
+
+    // Toggle password visibility pada modal detail
+$("#toggleDetailPassword").click(function () {
+    var passwordField = $("#detailPassword");
+    var icon = $(this).find("i");
+
+    // Toggle password visibility
+    if (passwordField.attr("type") === "password") {
+        passwordField.attr("type", "text");
+        icon.removeClass("fa-eye").addClass("fa-eye-slash");
+    } else {
+        passwordField.attr("type", "password");
+        icon.removeClass("fa-eye-slash").addClass("fa-eye");
+    }
+});
+
     $("#togglePassword").click(function () {
-        var passwordField = $("#detailPassword");
+        var passwordField = $("#inputPassword");
         var icon = $(this).find("i");
 
         // Toggle password visibility
@@ -14,7 +31,16 @@ $(document).ready(function () {
         }
     });
 
-    // Memanggil metode GET dari API
+    // Tambahkan fungsi untuk membersihkan formulir tambah setelah ditutup
+    $('#tambahModal').on('hidden.bs.modal', function () {
+        $("#tambahForm")[0].reset();
+        // Reset juga tampilan password jika sebelumnya diubah menjadi teks
+        $("#inputPassword").attr("type", "password");
+        $("#togglePassword").find("i").removeClass("fa-eye-slash").addClass("fa-eye");
+        $("#passwordError").text("");
+    });
+
+    // Daftar Karyawan Tetap
     $.ajax({
         url: "http://localhost/web-hanaasri/resources/views/karyawan/api.php?action=get_users&status='Karyawan Tetap'",
         method: "GET",
@@ -46,12 +72,12 @@ $(document).ready(function () {
                 columnDefs: [
                     {
                         orderable: false,
-                        target:3,
+                        target: 3,
                     },
                 ],
             });
 
-            // Menangani reset nomor urut saat data disorting
+            // Reset nomor urut saat data disorting
             table
                 .on("order.dt search.dt", function () {
                     table
@@ -71,6 +97,29 @@ $(document).ready(function () {
         },
     });
 });
+
+// Memanggil method DELETE dari API
+function deleteUser(userId, userName) {
+    var confirmMessage =
+        "Apakah Anda yakin ingin menghapus data karyawan " + userName + "?";
+
+    if (confirm(confirmMessage)) {
+        $.ajax({
+            url:
+                "http://localhost/web-hanaasri/resources/views/karyawan/api.php?action=delete_user&id=" + userId,
+            method: "DELETE",
+            dataType: "json",
+            success: function (response) {
+                console.log(response.message);
+                // Refresh halaman atau muat ulang data pada tablenya
+                location.reload();
+            },
+            error: function (error) {
+                console.error("Error deleting user:", error);
+            },
+        });
+    }
+}
 
 // Show Detail Modal
 function showDetailModal(userId) {
@@ -125,15 +174,24 @@ function isiDropdownDevisi() {
 }
 
 
-// Fungsi untuk menyimpan data
 function simpanData() {
+    // Mengambil nilai dari inputan modal
     var nama = $("#inputNama").val();
     var email = $("#inputEmail").val();
     var password = $("#inputPassword").val();
+    var status = $("#inputStatus").val();
     var divisiID = $("#inputDivisi").val();
-    
+
+    // Validasi panjang password
+    if (password.length < 8) {
+        $("#passwordError").text("Password harus memiliki minimal 8 karakter.");
+        return;
+    } else {
+        $("#passwordError").text(""); // Hapus pesan kesalahan jika panjang password memenuhi syarat
+    }
+
     // Pastikan data terisi dengan benar
-    if (nama && email && password && divisiID) {
+    if (nama && email && password && status && divisiID) {
         // Lakukan permintaan AJAX untuk menyimpan data
         $.ajax({
             url: "http://localhost/web-hanaasri/resources/views/karyawan/api.php?action=add_user",
@@ -142,6 +200,7 @@ function simpanData() {
                 nama: nama,
                 email: email,
                 password: password,
+                status: status,
                 divisiID: divisiID,
             },
             dataType: "json",
@@ -158,33 +217,5 @@ function simpanData() {
         });
     } else {
         alert("Harap isi semua kolom data!");
-    }
-}
-
-// Tambahkan fungsi untuk membersihkan formulir tambah setelah ditutup
-$('#tambahModal').on('hidden.bs.modal', function () {
-    $("#tambahForm")[0].reset();
-});
-
-// Memanggil method DELETE dari API
-function deleteUser(userId, userName) {
-    var confirmMessage =
-        "Apakah Anda yakin ingin menghapus data karyawan " + userName + "?";
-
-    if (confirm(confirmMessage)) {
-        $.ajax({
-            url:
-                "http://localhost/web-hanaasri/resources/API/api.php?action=delete_user&id=" + userId,
-            method: "DELETE",
-            dataType: "json",
-            success: function (response) {
-                console.log(response.message);
-                // Refresh halaman atau muat ulang data pada tablenya
-                location.reload();
-            },
-            error: function (error) {
-                console.error("Error deleting user:", error);
-            },
-        });
     }
 }

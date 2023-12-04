@@ -44,7 +44,8 @@
                     <hr class="text-black" />
                     <ul class="nav nav-pills flex-column mt-2 mt-sm-0" id="menu">
                         <li class="nav-item">
-                            <a class="nav-link text-black" href="../../dashboard/index.html" aria-current="page" id="Dashboard">
+                            <a class="nav-link text-black" href="../../dashboard/index.html" aria-current="page"
+                                id="Dashboard">
                                 <i class="fa-solid fa-house"></i>
                                 <span class="ms-2">Dashboard</span>
                             </a>
@@ -134,12 +135,27 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label for="inputPassword" class="form-label">Password</label>
-                                                <input type="password" class="form-control" id="inputPassword" required>
+                                                <div class="input-group">
+                                                    <input type="password" class="form-control" id="inputPassword"
+                                                        required>
+                                                    <button class="btn btn-outline-secondary" type="button"
+                                                        id="togglePassword">
+                                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                                    </button>
+                                                </div>
+                                                <small id="passwordError" class="text-danger"></small>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="inputStatus" class="form-label">Status</label>
+                                                <select class="form-select" id="inputStatus" required>
+                                                    <option>Karyawan Tetap</option>
+                                                    <option>Karyawan Tidak Tetap</option>
+                                                </select>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="inputDivisi" class="form-label">Divisi</label>
                                                 <select class="form-select" id="inputDivisi" required>
-                                                    <!-- NamaDevisi akan dimuat melalui JavaScript -->
+                                                    <!-- Daftar divisi NamaDevisi dari JS -->
                                                 </select>
                                             </div>
                                             <div class="modal-footer">
@@ -172,6 +188,7 @@
                         </table>
                     </div>
                 </div>
+
                 <!-- Modal Detail Form -->
                 <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
@@ -196,11 +213,10 @@
                                         <label for="detailPassword" class="form-label">Password</label>
                                         <div class="input-group">
                                             <input type="password" class="form-control" id="detailPassword" readonly>
-                                            <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                            <button class="btn btn-outline-secondary" type="button" id="toggleDetailPassword">
                                                 <i class="fa fa-eye" aria-hidden="true"></i>
-                                            </button>
+                                            </button>                                            
                                         </div>
-
                                     </div>
                                     <div class="mb-3">
                                         <label for="detailDivisi" class="form-label">Divisi</label>

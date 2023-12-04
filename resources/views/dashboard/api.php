@@ -25,7 +25,10 @@ if (isset($_GET['action'])) {
                 $totalTasksToday = $resultTotalTasksToday->fetch_assoc()['total_tasks_today'];
                 
                 // Get the latest tasks
-                $queryLatestTasks = "SELECT job.*, users.Nama FROM job INNER JOIN users ON job.KaryawanID = users.UserID ORDER BY tanggal ASC LIMIT 5;";
+                $queryLatestTasks = "SELECT job.*, users.Nama
+                                     FROM job
+                                     INNER JOIN users ON job.KaryawanID = users.UserID
+                                     WHERE DATE(job.Tanggal) = CURDATE()";
                 $resultLatestTasks = $conn->query($queryLatestTasks);
                 $latestTasks = $resultLatestTasks->fetch_all(MYSQLI_ASSOC);
 
