@@ -17,7 +17,7 @@ if (isset($_GET['action'])) {
                           FROM job
                           INNER JOIN users ON job.KaryawanID = users.UserID
                           INNER JOIN devisi ON users.DevisiID = devisi.DevisiID
-                          WHERE DATE(job.Tanggal) = CURDATE()";
+                          WHERE DATE(job.Tanggal) >= CURDATE()";
                 $result = $conn->query($query);
 
                 if ($result) {
@@ -30,35 +30,23 @@ if (isset($_GET['action'])) {
                 break;
             }
 
+            
+
         case 'POST':
-            // API Tambah Data
-            if ($action == 'add_user') {
-                $name = $_POST['name'];
-                $email = $_POST['email'];
-
-                $query = "INSERT INTO users (name, email) VALUES ('$name', '$email')";
-                if ($conn->query($query)) {
-                    echo json_encode(array("message" => "User added successfully"));
-                } else {
-                    http_response_code(500);
-                    echo json_encode(array("message" => "Error adding user"));
-                }
-                break;
-            }
-
+            
         case 'DELETE':
             // Menghapus data
             // Contoh: api.php?action=delete_user&id=1
-            if ($action == 'delete_user') {
+            if ($action == 'delete_task') {
                 if (isset($_GET['id'])) {
                     $id = $_GET['id'];
 
-                    $query = "DELETE FROM users WHERE UserID=$id";
+                    $query = "DELETE FROM job WHERE JobID=$id";
                     if ($conn->query($query)) {
                         echo json_encode(array("message" => "User deleted successfully"));
                     } else {
                         http_response_code(500);
-                        echo json_encode(array("message" => "Error deleting user"));
+                        echo json_encode(array("message" => "Error deleting task"));
                     }
                 } else {
                     http_response_code(400);

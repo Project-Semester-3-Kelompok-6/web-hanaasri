@@ -1,7 +1,7 @@
 $(document).ready(function () {
     // Memanggil metode GET dari API
     $.ajax({
-        url: "http://localhost/web-hanaasri/resources/views/tugaskaryawan/api_tugas_now.php?action=get_job_now",
+        url: "http://localhost/web-hanaasri/resources/views/tugaskaryawan/api_tugas_karyawan.php?action=get_job_now",
         method: "GET",
         dataType: "json",
         success: function (data) {
@@ -17,12 +17,12 @@ $(document).ready(function () {
                     "<td>" + data[i].Status + "</td>" +
                     "<td>" +
                     '<button class="btn btn-success me-1" onclick="showDetailModal(' + data[i].UserID + ')">Detail</button>' +
-                    '<button class="btn btn-danger" onclick="deleteUser(' + data[i].UserID + ", '" + data[i].Nama + "')\">Delete</button>" +
+                    '<button class="btn btn-danger" onclick="deleteTask(' + data[i].JobID + ')">Delete</button>' +
                     "</td>" +
                     "</tr>";
                 $("#table-body").append(row);
             }
-  
+
             // Inisialisasi DataTable setelah memasukkan data
             var table = $("#example").DataTable({
                 order: [],
@@ -32,35 +32,35 @@ $(document).ready(function () {
                 columnDefs: [
                     {
                         orderable: false,
-                        target:0,
+                        target: 0,
                     },
                     {
                         orderable: false,
-                        target:1,
+                        target: 1,
                     },
                     {
                         orderable: false,
-                        target:2,
+                        target: 2,
                     },
                     {
                         orderable: false,
-                        target:3,
+                        target: 3,
                     },
                     {
                         orderable: false,
-                        target:4,
+                        target: 4,
                     },
                     {
                         orderable: false,
-                        target:5,
+                        target: 5,
                     },
                     {
                         orderable: false,
-                        target:6,
+                        target: 6,
                     },
                 ],
             });
-  
+
             // Menangani reset nomor urut saat data disorting
             table
                 .on("order.dt search.dt", function () {
@@ -80,4 +80,19 @@ $(document).ready(function () {
             console.error("Error fetching data:", error);
         },
     });
-  });
+});
+
+function deleteTask(jobID) {
+    $.ajax({
+        url: "http://localhost/web-hanaasri/resources/views/tugaskaryawan/api_tugas_karyawan.php?action=delete_task&id=" + jobID,
+        method: "DELETE",
+        dataType: "json",
+        success: function (response) {
+            console.log(response.message);
+            location.reload(); // Refresh DataTable
+        },
+        error: function (error) {
+            console.error("Error deleting task:", error);
+        },
+    });
+}

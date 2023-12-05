@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    
+
     isiDropdownDevisi();
 
     $("#togglePassword").click(function () {
@@ -19,7 +19,7 @@ $(document).ready(function () {
     $("#togglePassword").click(function () {
         var passwordField = $("#inputPassword");
         var icon = $(this).find("i");
-    
+
         // Toggle password visibility
         if (passwordField.attr("type") === "password") {
             passwordField.attr("type", "text");
@@ -31,14 +31,14 @@ $(document).ready(function () {
     });
 
     // Tambahkan fungsi untuk membersihkan formulir tambah setelah ditutup
-$('#tambahModal').on('hidden.bs.modal', function () {
-    $("#tambahForm")[0].reset();
-    // Reset juga tampilan password jika sebelumnya diubah menjadi teks
-    $("#inputPassword").attr("type", "password");
-    $("#togglePassword").find("i").removeClass("fa-eye-slash").addClass("fa-eye");
-});
+    $('#tambahModal').on('hidden.bs.modal', function () {
+        $("#tambahForm")[0].reset();
+        // Reset juga tampilan password jika sebelumnya diubah menjadi teks
+        $("#inputPassword").attr("type", "password");
+        $("#togglePassword").find("i").removeClass("fa-eye-slash").addClass("fa-eye");
+    });
 
-    // Daftar Karyawan Tetap
+    // Daftar Karyawan Tidak Tetap
     $.ajax({
         url: "http://localhost/web-hanaasri/resources/views/karyawan/api.php?action=get_users&status='Karyawan Tidak Tetap'",
         method: "GET",
@@ -70,7 +70,7 @@ $('#tambahModal').on('hidden.bs.modal', function () {
                 columnDefs: [
                     {
                         orderable: false,
-                        target:3,
+                        target: 3,
                     },
                 ],
             });
@@ -179,7 +179,7 @@ function simpanData() {
     var password = $("#inputPassword").val();
     var status = $("#inputStatus").val();
     var divisiID = $("#inputDivisi").val();
-    
+
     // Pastikan data terisi dengan benar
     if (nama && email && password && status && divisiID) {
         // Lakukan permintaan AJAX untuk menyimpan data

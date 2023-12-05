@@ -1,38 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- Tambahkan link ke file CSS Bootstrap -->
-    <link class="nav-link" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link class="nav-link" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+        rel="stylesheet">
     <!-- Font -->
     <link rel="preconnect" class="nav-link" href="https://fonts.googleapis.com">
     <link rel="preconnect" class="nav-link" href="https://fonts.gstatic.com" crossorigin>
     <link class="nav-link" href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <!-- CSS -->
     <link rel="stylesheet" class="nav-link" href="index.css">
-    <!-- JS -->
-    <script src="index.js"></script>
+    <!-- jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" /></head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
 <body>
     <div class="container-fluid">
         <div class="row row-cols-2">
-            <!-- SideBar -->
-            <div class="d-flex flex-column justify-content-between bg-light min-vh-100 custom-sidebar" id="sidebar">
+            <!-- Sidebar -->
+            <div class="d-flex flex-column justify-content-between col-auto bg-light min-vh-100 custom-sidebar"
+                id="sidebar">
                 <div class="mt-4 w-100">
-                    <div class="row row-cols-2" id="logotoggler">
+                    <div class="d-flex justify-content-center align-items-center" id="logotoggler">
                         <div class="d-flex justify-content-center col-sm-9">
                             <img src="img/Logo.png" alt="Logo Hana Asri" height="50px">
                         </div>
-                        <div class="d-flex align-items-center justify-content-center col-sm-3 ms-auto">
-                            <button class="navbar-toggler text-black border-1 rounded-5 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle sidebar" id="sidtog">
-                                <span role="button"><i class="fa fa-bars" aria-hidden="true" style="color: #000000;"></i></span>
-                            </button>
-                        </div>
-                    </div>                                                     
-                    <hr class="text-black"/>
+                    </div>
+                    <hr class="text-black" />
                     <ul class="nav nav-pills flex-column mt-2 mt-sm-0" id="menu">
                         <li class="nav-item">
-                            <a class="nav-link text-black" href="#" aria-current="page" id="Dashboard">
+                            <a class="nav-link text-black" href="../dashboard/index.html" aria-current="page" id="Dashboard">
                                 <i class="fa-solid fa-house"></i>
                                 <span class="ms-2">Dashboard</span>
                             </a>
@@ -76,7 +79,7 @@
                                     <a class="nav-link text-black" href="#">Tugas</a>
                                 </li>
                             </ul>
-                        </li>                      
+                        </li>
                     </ul>
                 </div>
                 <div class="mb-5">
@@ -88,18 +91,20 @@
             </div>
             <!-- Main Content -->
             <div class="col-xl-9">
-                <div class="container mt-4">
+                <div class="container m-4">
                     <h1 class="text-black">Tugas Karyawan</h1>
                     <div class="card mt-4">
                         <div class="card-body">
                             <form>
                                 <div class="mb-3">
                                     <label for="nama" class="form-label">Nama</label>
-                                    <input type="text" class="form-control" id="nama" placeholder="Masukkan Nama Karyawan" required>
+                                    <input type="text" class="form-control" id="nama"
+                                    placeholder="Masukkan Nama Karyawan">
                                 </div>
                                 <div class="mb-3">
                                     <label for="Divisi" class="form-label">Divisi</label>
-                                    <input type="text" class="form-control" id="Divisi" placeholder="Pilih Divisi" required>
+                                    <input type="text" class="form-control" id="Divisi"
+                                    placeholder="Pilih Divisi" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="Tanggal" class="form-label">Tanggal</label>
@@ -107,8 +112,8 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="deskripsi" class="form-label">Deskripsi Tugas</label>
-                                    <textarea class="form-control" id="deskripsi" rows="4" placeholder="Masukkan Deskripsi"
-                                        required></textarea>
+                                    <textarea class="form-control" id="deskripsi" rows="4"
+                                        placeholder="Masukkan Deskripsi" required></textarea>
                                 </div>
                                 <button type="submit" class="btn float-end"
                                     style="background-color: rgba(255, 145, 76, 1);">
@@ -120,9 +125,34 @@
                     </div>
                     <!-- End of Card -->
                 </div>
+            </div>
         </div>
-    </div>
-    <!-- Tambahkan script untuk Bootstrap JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- JS Autocomplete -->
+        <script>
+            $(document).ready(function () {
+                // Mengambil data nama karyawan dari API
+                $.ajax({
+                    url: "http://localhost/web-hanaasri/resources/views/karyawan/api.php?action=get_users",
+                    method: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        // Mengambil array nama karyawan dari hasil API
+                        var namaKaryawanArray = data.map(function (item) {
+                            return item.Nama;
+                        });
+
+                        // Mengaktifkan fitur autocomplete pada input dengan id 'nama'
+                        $("#nama").autocomplete({
+                            source: namaKaryawanArray,
+                        });
+                    },
+                    error: function (error) {
+                        console.error("Error fetching data:", error);
+                    },
+                });
+            });
+        </script>
+
 </body>
+
 </html>

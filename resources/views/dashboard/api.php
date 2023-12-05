@@ -20,7 +20,9 @@ if (isset($_GET['action'])) {
 
                 // Calculate total tasks for today
                 $today = date('Y-m-d');
-                $queryTotalTasksToday = "SELECT COUNT(*) AS total_tasks_today FROM job WHERE tanggal = '$today'";
+                $queryTotalTasksToday = "SELECT COUNT(*) AS total_tasks_today
+                                         FROM job
+                                         WHERE tanggal >= CURDATE()";
                 $resultTotalTasksToday = $conn->query($queryTotalTasksToday);
                 $totalTasksToday = $resultTotalTasksToday->fetch_assoc()['total_tasks_today'];
                 
@@ -28,7 +30,7 @@ if (isset($_GET['action'])) {
                 $queryLatestTasks = "SELECT job.*, users.Nama
                                      FROM job
                                      INNER JOIN users ON job.KaryawanID = users.UserID
-                                     WHERE DATE(job.Tanggal) = CURDATE()";
+                                     WHERE DATE(job.Tanggal) >= CURDATE()";
                 $resultLatestTasks = $conn->query($queryLatestTasks);
                 $latestTasks = $resultLatestTasks->fetch_all(MYSQLI_ASSOC);
 
